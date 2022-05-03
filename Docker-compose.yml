@@ -1,0 +1,57 @@
+version:  '3.9'
+
+services:
+
+  wordpress:
+    image: local
+    container_name: wordpress
+    build:
+      context: wordpress/
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 9000:80
+    volumes:
+      - ./wordpress/volumes:/var/www/html
+    networks:
+      inception:
+        aliases: 
+          - wp
+
+  web:
+    image: nginx
+    container_name: nginx
+    build:
+      context: nginx/
+      dockerfile: Dockerfile
+    volumes:
+      - ./wordpress/volumes:/var/www/html
+    ports:
+      - 80:80
+    restart: always
+    networks:
+      - inception
+
+
+  db:
+    image: mariadb
+    container_name: mariadb
+    build:
+      context: 'mariadb/'
+      dockerfile: Dockerfile
+    env_file:
+      - inception.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/bclerc/inception/mariadb/data:/var/lib/mysql
+    restart: always
+    networks:
+      inception:
+        aliases:
+          - db
+
+
+networks:
+  inception:
+    driver: bridge
