@@ -11,7 +11,7 @@ if [ -z "$(ls /var/www/html/)" ]; then
 	mv /wp-config.php .
 	wp core download --allow-root --locale=fr_FR
 	echo "Configuring wordpress ..."
-	wp core --allow-root install --url=localhost --title="ft_inception" --admin_user=bclerc --admin_password=bclerc --admin_email=bclerc@student.42.fr
+	wp core --allow-root install --title="ft_inception" --admin_user=bclerc --admin_password=bclerc --admin_email=bclerc@student.42.fr
 	echo "Installing Redis wordpress plugin ..."
 	wp plugin install redis-cache --activate --allow-root
 	wp redis enable --force --allow-root
