@@ -1,4 +1,5 @@
 if [ ! -d /var/lib/mysql/wordpress/ ]; then
+	echo "No database wordpress found. Running ..."
 	mysql_install_db --datadir=/var/lib/mysql
 	/etc/init.d/mysql start
 	mysql -u root -e "CREATE DATABASE wordpress;"
@@ -6,5 +7,5 @@ if [ ! -d /var/lib/mysql/wordpress/ ]; then
 	mysql -u root -e "FLUSH PRIVILEGES;"
 	/etc/init.d/mysql stop
 fi
-
+echo "Starting mariadb service ..."
 mysqld

@@ -1,45 +1,53 @@
 version:  '3.9'
 
+networks:
+  inception:
+    driver: bridge
+
 services:
 
   wordpress:
-    image: local
+    image: wordpress
     container_name: wordpress
     build:
-      context: wordpress/
+      context: requirements/wordpress/
       dockerfile: Dockerfile
     env_file:
-      - inception.env
+      - .env
     restart: always
     ports:
       - 9000:80
     volumes:
-      - ./wordpress/volumes:/var/www/html
+      - ./requirements/wordpress/volumes:/var/www/html
     networks:
       inception:
         aliases: 
           - wp
 
-  web:
+  nginx:
     image: nginx
     container_name: nginx
     build:
-      context: nginx/
+      context: requirements/nginx/
       dockerfile: Dockerfile
     volumes:
-      - ./wordpress/volumes:/var/www/html
+      - ./requirements/wordpress/volumes:/var/www/html
+      - ./requirements/nginx/data/log/:/var/log/nginx
     ports:
       - 443:443
     restart: always
     depends_on:
       - wordpress
     networks:
-      - inception
+      inception:
+        aliases: 
+          - nginx
+
   redis:
     image: redis
     container_name: redis
     build:
-      context: bonus/redis/
+      context: srcs/bonus/redis/
       dockerfile: Dockerfile
     ports:
       - 6379:6379
@@ -56,9 +64,9 @@ services:
       context: bonus/ftp/
       dockerfile: Dockerfile
     env_file:
-      - inception.env
+      - .env
     volumes:
-      - ./wordpress/volumes:/home/wp_user/
+      - ./requirements/wordpress/volumes:/home/wp_user/
     ports:
       - 21:21
       - 21000-21010:21000-21010
@@ -75,17 +83,26 @@ services:
       context: 'mariadb/'
       dockerfile: Dockerfile
     env_file:
-      - inception.env
+      - .env
     ports:
       - "3306:3306"
     volumes:
-      - /Users/bclerc/inception/mariadb/data:/var/lib/mysql
+      - ./requirements/mariadb/data:/var/lib/mysql
     restart: always
     networks:
       inception:
         aliases:
           - db
 
-networks:
-  inception:
-    driver: bridge
+  uptime-kuma:
+    restart: always
+    ports:
+        - '3001:3001'
+    volumes:
+        - './requirements/bonus/uptime-kuma/data:/app/data'
+    container_name: uptime-kuma
+    image: 'louislam/uptime-kuma:1'
+    networks:
+      inception:
+        aliases:
+          - kuma

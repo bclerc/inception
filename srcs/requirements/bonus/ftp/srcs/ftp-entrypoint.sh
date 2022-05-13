@@ -1,5 +1,5 @@
 if ! id -u "wp_user" >/dev/null 2>&1; then
-	echo "wp_user not found. Creating ..."
+	echo "VSFTP have no configuration, running ..."
 	useradd wp_user -d /home/wp_user
 	echo "wp_user:$FTP_USER_PASSWORD" | chpasswd 
 	echo "wp_user" >> /etc/vsftpd.user_list
