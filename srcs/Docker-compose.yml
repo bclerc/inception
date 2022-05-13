@@ -47,7 +47,7 @@ services:
     image: redis
     container_name: redis
     build:
-      context: srcs/bonus/redis/
+      context: requirements/bonus/redis/
       dockerfile: Dockerfile
     ports:
       - 6379:6379
@@ -61,7 +61,7 @@ services:
     image: ftp
     container_name: ftp
     build:
-      context: bonus/ftp/
+      context: requirements/bonus/ftp/
       dockerfile: Dockerfile
     env_file:
       - .env
@@ -80,7 +80,7 @@ services:
     image: mariadb
     container_name: mariadb
     build:
-      context: 'mariadb/'
+      context: 'requirements/mariadb/'
       dockerfile: Dockerfile
     env_file:
       - .env
