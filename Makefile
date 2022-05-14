@@ -9,6 +9,8 @@ all: $(NAME)
 
 $(NAME):
 		@docker compose -f ./srcs/Docker-compose.yml up -d
+		@docker-compose -f ./srcs/Docker-compose.yml logs -f
+
 log:
 		@docker-compose -f ./srcs/Docker-compose.yml logs -f
 stop:
