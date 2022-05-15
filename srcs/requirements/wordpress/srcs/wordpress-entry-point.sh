@@ -1,6 +1,11 @@
 mkdir -p /run/php/
 if [ -z "$(ls /var/www/html/wp-content/)" ]; then
 	echo "\033[0;31m Wordpress not found, running installation ...\033[0m"
+	if ping -c 1 db:3306 &> /dev/null
+		then
+			echo "Mysql server down, Installation can't running ... exit"
+			exit 1
+		fi
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar
 	mv wp-cli.phar /usr/local/bin/wp
@@ -15,7 +20,6 @@ if [ -z "$(ls /var/www/html/wp-content/)" ]; then
 	echo "Installing Redis wordpress plugin ..."
 	wp plugin install --url redis-cache --activate --allow-root
 	wp redis enable --force --allow-root
-else
-	echo "Starting PHP service ... "
-	php-fpm7.3 -F
 fi
+echo "Starting PHP service ... "
+php-fpm7.3 -F
