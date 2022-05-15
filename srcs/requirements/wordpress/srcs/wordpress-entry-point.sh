@@ -1,10 +1,10 @@
 #!/bin/sh
 
 
-if [ -z "$(ls /var/www/html/wp-content/)" ]; then
-	while ! ping -c1 db &>/dev/null
+if [ -z "$(ls /var/www/html/)" ]; then
+	while ! ping -c1 db
         do 
-			echo "\033[0;31Error:\033[0m Can't reachable Mysql server for installation, retrying ..." ;
+			echo "\033[0;31mError:\033[0m Can't reachable Mysql server for installation, retrying ..." ;
 			sleep 5;
 		done
 	echo "\033[0;31m Wordpress not found, running installation ...\033[0m"
