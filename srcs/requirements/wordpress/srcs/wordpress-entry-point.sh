@@ -18,7 +18,12 @@ if [ -z "$(ls /var/www/html/)" ]; then
 	cp /wp-config.php .
 	wp core download --allow-root --locale=fr_FR
 	echo "Configuring wordpress ..."
-	wp core --allow-root install --url=$HOST --title="ft_inception" --admin_user=$WP_USER_NAME --admin_password=$WP_USER_PASS --admin_email=$WP_USER_MAIL || (rm -rf /var/www/* && exit 1) 
+	wp core --allow-root install --url=$HOST --title="ft_inception" --admin_user=$WP_USER_NAME --admin_password=$WP_USER_PASS --admin_email=$WP_USER_MAIL
+	if $1; then
+		echo "\033[0;31mError:\033[0mUnexpected on wordpress installation ... exit"
+		rm -rf /var/html/*
+		exit 1
+	fi
 	echo "Installing Redis wordpress plugin ..."
 	wp plugin install --url redis-cache --activate --allow-root
 	wp redis enable --force --allow-root
