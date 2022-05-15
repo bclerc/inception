@@ -8,20 +8,21 @@ PROJECT_NAME = ft_containers
 all: $(NAME)
 
 $(NAME):
-		@docker compose -f ./srcs/Docker-compose.yml up -d
+		@docker-compose -f ./srcs/Docker-compose.yml up -d
 		@docker-compose -f ./srcs/Docker-compose.yml logs -f
 
 log:
 		@docker-compose -f ./srcs/Docker-compose.yml logs -f
 stop:
-		@docker compose -f ./srcs/Docker-compose.yml stop
+		@docker-compose -f ./srcs/Docker-compose.yml stop
 down: stop
-		@docker compose -f ./srcs/Docker-compose.yml down
+		@docker-compose -f ./srcs/Docker-compose.yml down
 build:
-		@docker compose -f ./srcs/Docker-compose.yml build
+		@docker-compose -f ./srcs/Docker-compose.yml build
 clean: down
 		@echo "Deleting all files .."
 		@rm -rf ./srcs/requirements/wordpress/volumes/*
 		@rm -rf ./srcs/requirements/mariadb/data/*
+		@rm -rf ./srcs/requirements/nginx/data/*
 		@echo "Ok"
  

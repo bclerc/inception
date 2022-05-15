@@ -1,0 +1,42 @@
+220514 22:08:16 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+2022-05-14 22:08:16 0 [Note] /usr/sbin/mysqld (mysqld 10.3.34-MariaDB-0+deb10u1) starting as process 205 ...
+2022-05-14 22:08:16 0 [Warning] Setting lower_case_table_names=2 because file system for /var/lib/mysql/ is case insensitive
+2022-05-14 22:08:16 0 [Note] InnoDB: Using Linux native AIO
+2022-05-14 22:08:16 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2022-05-14 22:08:16 0 [Note] InnoDB: Uses event mutexes
+2022-05-14 22:08:16 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2022-05-14 22:08:16 0 [Note] InnoDB: Number of pools: 1
+2022-05-14 22:08:16 0 [Note] InnoDB: Using SSE2 crc32 instructions
+2022-05-14 22:08:16 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2022-05-14 22:08:16 0 [Note] InnoDB: Completed initialization of buffer pool
+2022-05-14 22:08:16 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2022-05-14 22:08:16 0 [Note] InnoDB: 128 out of 128 rollback segments are active.
+2022-05-14 22:08:16 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2022-05-14 22:08:16 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2022-05-14 22:08:16 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2022-05-14 22:08:16 0 [Note] InnoDB: 10.3.34 started; log sequence number 1625620; transaction id 20
+2022-05-14 22:08:16 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2022-05-14 22:08:16 0 [Note] Plugin 'FEEDBACK' is disabled.
+2022-05-14 22:08:16 0 [Note] InnoDB: Buffer pool(s) load completed at 220514 22:08:16
+2022-05-14 22:08:16 0 [Note] Server socket created on IP: '0.0.0.0'.
+2022-05-14 22:08:16 0 [Warning] 'user' entry 'root@0dede10c73b7' ignored in --skip-name-resolve mode.
+2022-05-14 22:08:16 0 [Warning] 'user' entry '@0dede10c73b7' ignored in --skip-name-resolve mode.
+2022-05-14 22:08:16 0 [Warning] 'proxies_priv' entry '@% root@0dede10c73b7' ignored in --skip-name-resolve mode.
+2022-05-14 22:08:16 0 [Note] Reading of all Master_info entries succeeded
+2022-05-14 22:08:16 0 [Note] Added new Master_info '' to hash table
+2022-05-14 22:08:16 0 [Note] /usr/sbin/mysqld: ready for connections.
+Version: '10.3.34-MariaDB-0+deb10u1'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  Debian 10
+2022-05-14 22:08:17 13 [Warning] 'user' entry 'root@0dede10c73b7' ignored in --skip-name-resolve mode.
+2022-05-14 22:08:17 13 [Warning] 'user' entry '@0dede10c73b7' ignored in --skip-name-resolve mode.
+2022-05-14 22:08:17 13 [Warning] 'proxies_priv' entry '@% root@0dede10c73b7' ignored in --skip-name-resolve mode.
+2022-05-14 22:08:17 0 [Note] /usr/sbin/mysqld (initiated by: root[root] @ localhost []): Normal shutdown
+2022-05-14 22:08:17 0 [Note] Event Scheduler: Purging the queue. 0 events
+2022-05-14 22:08:17 0 [Note] InnoDB: FTS optimize thread exiting.
+2022-05-14 22:08:17 0 [Note] InnoDB: Starting shutdown...
+2022-05-14 22:08:17 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+2022-05-14 22:08:17 0 [Note] InnoDB: Buffer pool(s) dump completed at 220514 22:08:17
+2022-05-14 22:08:18 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2022-05-14 22:08:18 0 [Note] InnoDB: Shutdown completed; log sequence number 1625629; transaction id 21
+2022-05-14 22:08:18 0 [Note] /usr/sbin/mysqld: Shutdown complete
+
+220514 22:08:18 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended

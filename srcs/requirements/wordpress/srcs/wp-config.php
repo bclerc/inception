@@ -31,10 +31,10 @@ define( 'WP_REDIS_PORT', '6379');
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Nom de la base de données de WordPress. */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', getenv("WP_DATABASE_NAME") );
 
 /** Utilisateur de la base de données MySQL. */
-define( 'DB_USER', 'wp_user' );
+define( 'DB_USER', getenv("WP_DATABASE_USER") );
 
 /** Mot de passe de la base de données MySQL. */
 define( 'DB_PASSWORD', getenv("MARIADB_USER_PASSWORD"));
