@@ -13,8 +13,8 @@ if [ -z "$(ls /var/www/html/)" ]; then
 	cd /var/www/html
 	cp /wp-config.php .
 	wp core download --allow-root --locale=fr_FR
-	chown -R www-data:	/var/www/*
-	chmod -R 755					/var/www/*
+	chown -R 1000:1000 /var/www/*
+	chmod -R 755 /var/www/*
 	echo "Configuring wordpress ..."
 	while ! wp core --allow-root install --url=$HOST --title="ft_inception" --admin_user=$WP_USER_NAME --admin_password=$WP_USER_PASS --admin_email=$WP_USER_MAIL
 	do 
