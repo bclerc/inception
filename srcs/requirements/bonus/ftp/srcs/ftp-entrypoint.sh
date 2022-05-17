@@ -7,7 +7,7 @@ if ! id -u "$FTP_USER_NAME" >/dev/null 2>&1; then
 	mkdir -p /var/run/vsftpd/empty
 	usermod -aG wordpress $FTP_USER_NAME
 	chown -R $FTP_USER_NAME:wordpress /home/$FTP_USER_NAME/
-	chmod -R 755 /home/$FTP_USER_NAME/
+	chmod -R 764 /home/$FTP_USER_NAME/
 	newgrp wordpress
 	unset $FTP_USER_NAME $FTP_USER_PASS
 fi
