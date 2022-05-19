@@ -32,7 +32,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./requirements/wordpress/volumes:/var/www/html
-      - ./requirements/nginx/data/log/:/var/log/nginx
     ports:
       - 443:443
     restart: always
@@ -99,7 +98,7 @@ services:
     ports:
         - '3001:3001'
     volumes:
-        - './requirements/bonus/uptime-kuma/data:/app/data'
+        - './requirements/bonus/uptime-kuma/data/kuma.db:/app/data/kuma.db'
     container_name: uptime-kuma
     image: 'louislam/uptime-kuma:1'
     networks:

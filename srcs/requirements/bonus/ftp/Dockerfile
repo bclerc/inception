@@ -5,7 +5,6 @@ RUN apt install -y vsftpd
 
 RUN groupadd wordpress
 
-
 ADD srcs/vsftpd.conf /etc/
 ADD srcs/ftp-entrypoint.sh /
 ADD srcs/.cert/vsftpd.crt /etc/ssl/certs/
