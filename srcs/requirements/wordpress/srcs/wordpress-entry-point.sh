@@ -22,7 +22,6 @@ if [ -z "$(ls /var/www/html/)" ]; then
 	echo "Installing Redis wordpress plugin ..."
 	wp plugin install --url redis-cache --activate --allow-root
 	wp redis enable --force --allow-root
-	chown -R 1000:1000 /var/www/*
 	chmod -R 755 /var/www/*
 fi
 echo "Starting PHP service ... "

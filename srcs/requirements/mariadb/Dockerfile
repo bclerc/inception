@@ -1,8 +1,5 @@
 FROM debian:buster
 
-RUN groupadd -r mysql && useradd -r -g mysql mysql
- 
-
 RUN apt update
 RUN apt -y upgrade
 RUN apt install -y mariadb-server
@@ -10,7 +7,6 @@ RUN apt install -y mariadb-server
 RUN mkdir -p /var/run/mysqld/ /var/lib/mysql
 RUN chown -R mysql:mysql /var/run/mysqld
 RUN chown -R  mysql:mysql /var/lib/mysql
-
 RUN chown -R mysql:mysql /var/log/mysql/
 RUN usermod -d /var/lib/mysql/ mysql
 

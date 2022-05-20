@@ -98,7 +98,7 @@ services:
     ports:
         - '3001:3001'
     volumes:
-        - './requirements/bonus/uptime-kuma/data/kuma.db:/app/data/kuma.db'
+        - './requirements/bonus/uptime-kuma/data/:/app/data/'
     container_name: uptime-kuma
     image: 'louislam/uptime-kuma:1'
     networks:
