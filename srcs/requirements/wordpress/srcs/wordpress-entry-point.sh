@@ -23,6 +23,7 @@ if [ -z "$(ls /var/www/html/)" ]; then
 	wp plugin install --url redis-cache --activate --allow-root
 	wp redis enable --force --allow-root
 	chmod -R 755 /var/www/*
+	unset $(env | grep PASS | cut -d = -f 1)
 fi
 echo "Starting PHP service ... "
 php-fpm7.3 -F

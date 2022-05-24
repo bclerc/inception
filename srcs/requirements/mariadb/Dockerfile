@@ -14,9 +14,13 @@ RUN usermod -d /var/lib/mysql/ mysql
 ADD srcs/50-server.cnf /etc/mysql/mariadb.conf.d/
 RUN chmod 444 /etc/mysql/mariadb.conf.d/50-server.cnf
 
-ADD srcs/start.sh /
-RUN chmod +x /start.sh
+ADD srcs/mariadb-entry-point.sh /
+ADD srcs/install.sh /
+
+RUN chmod +x /install.sh /mariadb-entry-point.sh
 RUN	usermod -aG mysql mysql
+USER mysql
+WORKDIR /var/lib/mysql
 EXPOSE 3306
 
-CMD [ "sh", "/start.sh" ]
+CMD [ "bash", "/mariadb-entry-point.sh" ]
