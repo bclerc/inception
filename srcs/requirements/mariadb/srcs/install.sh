@@ -1,6 +1,6 @@
 mkfifo /var/run/mysqld/mysqld.sock
 echo "No database $WP_DATABASE_NAME found. Running ..."
-mysql_install_db
+mysql_install_db --user=mysql
 echo "Secure installation ..."
 mysqld_safe &
 mysqladmin --silent --wait=10 ping
