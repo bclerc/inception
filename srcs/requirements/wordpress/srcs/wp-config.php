@@ -37,7 +37,7 @@ define( 'DB_NAME', getenv("WP_DATABASE_NAME") );
 define( 'DB_USER', getenv("WP_DATABASE_USER") );
 
 /** Mot de passe de la base de données MySQL. */
-define( 'DB_PASSWORD', getenv("MARIADB_USER_PASSWORD"));
+define( 'DB_PASSWORD', getenv("MARIADB_USER_PASS"));
 
 /** Adresse de l’hébergement MySQL. */
 define( 'DB_HOST', 'db' );
