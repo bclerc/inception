@@ -1,14 +1,17 @@
 
 NAME = containers
 PROJECT_NAME = ft_containers
-
+VOLUMES =	srcs/requirements/wordpress/volumes/ \
+			srcs/requirements/mariadb/data/ \
+			srcs/requirements/nginx/data/
 
 .PHONY: all stop log down build clean
 
 all: $(NAME)
 
 $(NAME):
-		@docker compose -f ./srcs/docker-compose.yml up -d
+		@mkdir -p $(VOLUMES)
+		@docker compose -f ./srcs/docker-compose.yml up --build
 		@docker compose -f ./srcs/docker-compose.yml logs -f
 
 log:
@@ -21,8 +24,11 @@ build:
 		@docker compose -f ./srcs/docker-compose.yml build
 clean: down
 		@echo "Deleting all files .."
-		@rm -rf ./srcs/requirements/wordpress/volumes/*
-		@rm -rf ./srcs/requirements/mariadb/data/*
-		@rm -rf ./srcs/requirements/nginx/data/*
+		@sudo rm -rf $(VOLUMES)
 		@echo "Ok"
+fclean: down
+		@docker image prune
+		@docker system prune
+		@echo "ok"
+	
  

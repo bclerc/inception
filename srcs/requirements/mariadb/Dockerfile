@@ -19,8 +19,11 @@ ADD srcs/install.sh /
 
 RUN chmod +x /install.sh /mariadb-entry-point.sh
 RUN	usermod -aG mysql mysql
+
 USER mysql
+
 WORKDIR /var/lib/mysql
+
 EXPOSE 3306
 
 CMD [ "bash", "/mariadb-entry-point.sh" ]
