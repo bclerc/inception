@@ -23,7 +23,7 @@ if [ -z "$(ls /var/www/html/wordpress/)" ]; then
 	wp plugin install --url redis-cache --activate --allow-root
 	wp redis enable --force --allow-root
 	chown -R www-data:www-data /var/www/html/wordpress/
-	chmod -R 755 /var/www/html/wordpress/
+	chmod -R 775 /var/www/html/wordpress/
 fi
 echo "Starting PHP service ... "
 php-fpm7.3 -F

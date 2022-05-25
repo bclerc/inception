@@ -5,7 +5,7 @@ if ! id -u "$FTP_USER_NAME" >/dev/null 2>&1; then
 	echo "$FTP_USER_NAME" >> /etc/vsftpd.user_list
 	mkdir -p /home/$FTP_USER_NAME
 	mkdir -p /var/run/vsftpd/empty
-	usermod -aG wordpress $FTP_USER_NAME
+	usermod -aG www-data $FTP_USER_NAME
 	chown -R $FTP_USER_NAME:wordpress /home/$FTP_USER_NAME/
 	chmod -R 764 /home/$FTP_USER_NAME/
 	newgrp wordpress
