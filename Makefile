@@ -3,7 +3,9 @@ NAME = containers
 PROJECT_NAME = ft_containers
 VOLUMES =	srcs/requirements/wordpress/volumes/ \
 			srcs/requirements/mariadb/data/ \
-			srcs/requirements/nginx/data/
+			srcs/requirements/nginx/data/ \
+			srcs/requirements/bonus/uptime-kuma/data/
+
 
 .PHONY: all stop log down build clean
 
