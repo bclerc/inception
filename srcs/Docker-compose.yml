@@ -32,6 +32,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./requirements/wordpress/volumes:/var/www/html/wordpress
+      - ./requirements/nginx/srcs/site/:/var/www/html/site/
+
     ports:
       - 443:443
     restart: always

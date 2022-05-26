@@ -14,7 +14,7 @@ if [ -z "$(ls /var/www/html/wordpress/)" ]; then
 	cp /wp-config.php .
 	wp core download --allow-root --locale=fr_FR
 	echo "Configuring wordpress ..."
-	while ! wp core --allow-root install --url=$HOST --title="ft_inception" --admin_user=$WP_USER_NAME --admin_password=$WP_USER_PASS --admin_email=$WP_USER_MAIL
+	while ! wp core --allow-root install --url=blog.bclerc.42.fr --title="ft_inception" --admin_user=$WP_USER_NAME --admin_password=$WP_USER_PASS --admin_email=$WP_USER_MAIL
 	do 
 		echo "\033[0;31mError:\033[0m Can't install wordpress server, retrying in 5s" ;
 		sleep 5;
