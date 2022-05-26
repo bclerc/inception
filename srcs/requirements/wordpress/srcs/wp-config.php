@@ -3,8 +3,9 @@
 $_SERVER['HTTPS']='on';
 
 
+define(	'WP_REDIS_PASSWORD', "yolo");
 define( 'WP_CACHE', true);
-define( 'WP_CACHE_KEY_SALT', 'localhost' ); 
+define( 'WP_CACHE_KEY_SALT', 'wp' ); 
 define( 'WP_REDIS_HOST', 'redis'); 
 define( 'WP_REDIS_PORT', '6379'); 
 
