@@ -26,7 +26,7 @@ services:
     ports:
       - 9000:80
     volumes:
-      - ${HOME}/data/wordpress/:/var/www/html/wordpress/
+      - /${HOME}/data/wordpress/:/var/www/html/wordpress/
     networks:
       inception:
         aliases: 
@@ -39,7 +39,7 @@ services:
       context: requirements/nginx/
       dockerfile: Dockerfile
     volumes:
-      - ${HOME}/data/wordpress/:/var/www/html/wordpress/
+      - /${HOME}/data/wordpress/:/var/www/html/wordpress/
     ports:
       - 443:443
     restart: always
@@ -81,7 +81,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - .${HOME}/data/mariadb/:/var/lib/mysql
+      - /${HOME}/data/mariadb/:/var/lib/mysql
     restart: always
     networks:
       inception:
@@ -98,7 +98,7 @@ services:
       - FTP_USER_NAME
       - FTP_USER_PASS
     volumes:
-      - ${HOME}/data/wordpress/:/home/wp_user/
+      - /${HOME}/data/wordpress/:/home/wp_user/
     ports:
       - 21:21
       - 21000-21010:21000-21010
@@ -118,7 +118,7 @@ services:
     ports:
         - '3001:3001'
     volumes:
-        - '${HOME}/data/uptime-kuma/data/:/uptime-kuma/data/'
+        - '/${HOME}/data/uptime-kuma/data/:/uptime-kuma/data/'
     container_name: uptime-kuma
     networks:
       inception:
