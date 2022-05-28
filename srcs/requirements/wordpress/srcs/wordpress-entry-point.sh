@@ -2,7 +2,7 @@
 if [ -z "$(ls /var/www/html/wordpress/)" ]; then
 	while ! ping -c1 db
         do 
-			echo "\033[0;31mError:\033[0m Can't reachable Mysql server for installation, retrying in 5s." ;
+			echo "\033[0;31mError:\033[0m Can't reachable Mysql server for installation, retry in 5s." ;
 			sleep 5;
 		done
 	echo "\033[0;31m Wordpress not found, running installation ...\033[0m"
@@ -16,9 +16,11 @@ if [ -z "$(ls /var/www/html/wordpress/)" ]; then
 	echo "Configuring wordpress ..."
 	while ! wp core --allow-root install --url=blog.bclerc.42.fr --title="ft_inception" --admin_user=$WP_USER_NAME --admin_password=$WP_USER_PASS --admin_email=$WP_USER_MAIL
 	do 
-		echo "\033[0;31mError:\033[0m Can't install wordpress server, retrying in 5s" ;
+		echo "\033[0;31mError:\033[0m install wordpress error, retry in 5s" ;
 		sleep 5;
 	done
+	echo "Creating user ${WP_GUEST_NAME}"
+	wp --allow-root user create ${WP_GUEST_NAME} ${WP_GUEST_MAIL} --user_pass=${WP_GUEST_PASS}
 	echo "Installing Redis wordpress plugin ..."
 	wp plugin install --url redis-cache --activate --allow-root
 	wp redis enable --force --allow-root

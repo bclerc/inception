@@ -4,21 +4,29 @@ networks:
   inception:
     driver: bridge
 
-services:
 
+services:
   wordpress:
     image: wordpress
     container_name: wordpress
     build:
       context: requirements/wordpress/
       dockerfile: Dockerfile
-    env_file:
-      - .env
+    environment:
+      - WP_GUEST_NAME
+      - WP_GUEST_MAIL
+      - WP_GUEST_PASS
+      - WP_USER_NAME
+      - WP_USER_PASS
+      - WP_USER_MAIL
+      - WP_DATABASE_NAME
+      - WP_DATABASE_USER
+      - MARIADB_USER_PASS
     restart: always
     ports:
       - 9000:80
     volumes:
-      - ./requirements/wordpress/volumes:/var/www/html/wordpress/
+      - ${HOME}/data/wordpress/:/var/www/html/wordpress/
     networks:
       inception:
         aliases: 
@@ -31,8 +39,7 @@ services:
       context: requirements/nginx/
       dockerfile: Dockerfile
     volumes:
-      - ./requirements/wordpress/volumes:/var/www/html/wordpress/
-      - ./requirements/nginx/srcs/site/:/var/www/html/site/
+      - ${HOME}/data/wordpress/:/var/www/html/wordpress/
     ports:
       - 443:443
     restart: always
@@ -49,8 +56,8 @@ services:
     build:
       context: requirements/bonus/redis/
       dockerfile: Dockerfile
-    env_file:
-      - .env
+    environment:
+      - REDIS_PASS
     ports:
       - 6379:6379
     networks:
@@ -61,16 +68,20 @@ services:
 
   db:
     image: mariadb
+
     container_name: mariadb
     build:
       context: 'requirements/mariadb/'
       dockerfile: Dockerfile
-    env_file:
-      - .env
+    environment:
+      - WP_DATABASE_USER
+      - WP_DATABASE_NAME
+      - MARIADB_ROOT_PASS
+      - MARIADB_USER_PASS
     ports:
       - "3306:3306"
     volumes:
-      - ./requirements/mariadb/data:/var/lib/mysql
+      - .${HOME}/data/mariadb/:/var/lib/mysql
     restart: always
     networks:
       inception:
@@ -83,10 +94,11 @@ services:
     build:
       context: requirements/bonus/ftp/
       dockerfile: Dockerfile
-    env_file:
-      - .env
+    environment:
+      - FTP_USER_NAME
+      - FTP_USER_PASS
     volumes:
-      - ./requirements/wordpress/volumes:/home/wp_user/
+      - ${HOME}/data/wordpress/:/home/wp_user/
     ports:
       - 21:21
       - 21000-21010:21000-21010
@@ -106,7 +118,7 @@ services:
     ports:
         - '3001:3001'
     volumes:
-        - './requirements/bonus/uptime-kuma/data/:/uptime-kuma/data/'
+        - '${HOME}/data/uptime-kuma/data/:/uptime-kuma/data/'
     container_name: uptime-kuma
     networks:
       inception:
